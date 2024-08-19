@@ -1,5 +1,5 @@
-import React, { ButtonHTMLAttributes } from 'react';
-import { Checkbox } from '../ui/checkbox';
+import React from 'react';
+import {Checkbox} from '../ui/checkbox';
 
 export interface FilterCheckboxProps {
     text: string;
@@ -10,12 +10,12 @@ export interface FilterCheckboxProps {
 }
 
 export const FilterCheckbox: React.FC<FilterCheckboxProps> = ({
-                                                                 text,
-                                                                 value,
-                                                                 endAdornment,
-                                                                 onCheckedChange,
-                                                                 checked,
-                                                             }) => {
+                                                                  text,
+                                                                  value,
+                                                                  endAdornment,
+                                                                  onCheckedChange,
+                                                                  checked,
+                                                              }) => {
     return (
         <div className="flex items-center space-x-2">
             <Checkbox
