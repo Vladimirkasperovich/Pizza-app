@@ -55,7 +55,7 @@ export const Filters: React.FC<Props> = ({className}) => {
                 </div>
                 <RangeSlider min={0} max={5000} step={10} value={[0, 500]}/>
             </div>
-            <CheckboxFiltersGroup title='Ингредиенты:' items={items} className='mt-5' limit={6}/>
+            <CheckboxFiltersGroup title='Ингредиенты:' items={items} defaultItems={items} className='mt-5' limit={6}/>
         </div>
     );
 };
