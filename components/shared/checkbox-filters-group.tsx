@@ -9,13 +9,14 @@ interface Props {
     title: string
     className?: string
     items: Item[]
-    defaultItems: Item[]
+    defaultItems?: Item[]
     limit?: number
     loading?: boolean
     searchInputPlaceholder?: string
     onClickCheckbox?: (id: string) => void
-    selectedIds?: Set<string>
+    selected?: Set<string>
     defaultValue?: string[]
+    name?: string
 }
 
 export const CheckboxFiltersGroup: React.FC<Props> = ({
@@ -25,10 +26,11 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
                                                           limit = 5,
                                                           searchInputPlaceholder = 'Поиск...',
                                                           onClickCheckbox,
-                                                          selectedIds,
+                                                          selected,
                                                           defaultValue,
                                                           title,
-                                                          loading
+                                                          loading,
+                                                          name
                                                       }) => {
 
     const [showAll, setShowAll] = React.useState(false)
@@ -54,7 +56,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
             </div>
         )
     }
-    const list = showAll ? items.filter(item => item.text.toLowerCase().includes(searchValue.toLowerCase())) : defaultItems.slice(0, limit)
+    const list = showAll ? items.filter(item => item.text.toLowerCase().includes(searchValue.toLowerCase())) : (defaultItems || items).slice(0, limit)
 
     return (
         <div className={className}>
@@ -79,7 +81,8 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
                             value={item.value}
                             endAdornment={item.endAdornment}
                             onCheckedChange={() => onClickCheckbox?.(item.value)}
-                            checked={selectedIds?.has(item.value)}
+                            checked={selected?.has(item.value)}
+                            name={name}
                         />
                     ))
                 }
