@@ -5,7 +5,7 @@ interface Props {
     className?: string;
     src: string;
     alt: string;
-    size: number;
+    size: 20 | 30 | 40;
 }
 
 export const ProductImage: React.FC<Props> = ({ className, src, alt, size }) => {

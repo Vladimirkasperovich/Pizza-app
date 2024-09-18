@@ -1,7 +1,6 @@
-
-import type { Metadata } from 'next';
-import { Suspense } from 'react';
+import type {Metadata} from 'next';
 import {Header} from "@/components/shared";
+import React from 'react'
 
 export const metadata: Metadata = {
     title: 'Next Pizza | Главная',
@@ -16,9 +15,7 @@ export default function HomeLayout({
 }>) {
     return (
         <main className="min-h-screen">
-            <Suspense>
-                <Header />
-            </Suspense>
+            <Header/>
             {children}
             {modal}
         </main>
