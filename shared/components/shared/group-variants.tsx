@@ -21,6 +21,7 @@ export const GroupVariants: React.FC<Props> = ({
                                                    selectedValue,
                                                    items,
                                                }) => {
+    console.log(items)
 
 
     return (
