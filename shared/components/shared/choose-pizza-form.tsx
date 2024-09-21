@@ -6,7 +6,7 @@ import {Button} from "@/shared/components/ui";
 import {GroupVariants} from "@/shared/components/shared/group-variants";
 import {PizzaSize, pizzaSizes, PizzaType, pizzaTypes} from "@/shared/helpers/constants/pizza";
 import {IngredientItem} from "@/shared/components/shared";
-import {Ingredient} from "@prisma/client";
+import {Ingredient, ProductItem} from "@prisma/client";
 import {useSet} from "react-use";
 
 
@@ -15,14 +15,14 @@ interface Props {
     name: string;
     className?: string;
     ingredients: Ingredient[];
-    items?: any[];
-    onClickAdd?: VoidFunction;
+    items: ProductItem[];
+    onClickAddCart?: VoidFunction;
 }
 
 export const ChoosePizzaForm: React.FC<Props> = ({
                                                      className,
                                                      ingredients,
-                                                     onClickAdd,
+                                                     onClickAddCart,
                                                      name,
                                                      items,
                                                      imageUrl,
@@ -33,7 +33,13 @@ export const ChoosePizzaForm: React.FC<Props> = ({
     const [selectedIngredients, {toggle: addIngredient}] = useSet(new Set<number>([]))
 
     const textDetails = '30 см, традиционное тесто 30'
-    const totalPrice = 'Добавить в корзину за 350 BYN'
+    const pizzaPrice = items.find(item => item.pizzaType === type && item.size === size)!.price
+    const totalIngredientsPrice = ingredients
+        .filter(ingredient => selectedIngredients.has(ingredient.id))
+        .reduce((acc, ingredient) => acc + ingredient.price, 0)
+
+    const totalPrice = `Добавить в корзину за ${pizzaPrice + totalIngredientsPrice} BYN`
+
 
     return (
         <div className={cn(className, 'flex flex-1')}>

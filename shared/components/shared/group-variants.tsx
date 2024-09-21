@@ -21,11 +21,11 @@ export const GroupVariants: React.FC<Props> = ({
                                                    selectedValue,
                                                    items,
                                                }) => {
-    console.log(items)
 
 
     return (
         <div className={cn('flex justify-between bg-[#F3F3f3] rounded-3xl p-1 select-none ', className)}>
+
             {
                 items.map((variant) => (
                     <button
@@ -34,7 +34,7 @@ export const GroupVariants: React.FC<Props> = ({
                         className={cn(
                             'flex items-center justify-center cursor-pointer h-[30px] px-5 flex-1 rounded-3xl transition-all duration-400 text-sm',
                             {
-                                'bg-white shadow': variant.value === selectedValue,
+                                'bg-white shadow border-2 border-primary': variant.value === selectedValue,
                                 'text-gray-500 opacity-50 pointer-events-none': variant.disabled,
                             }
                         )}
