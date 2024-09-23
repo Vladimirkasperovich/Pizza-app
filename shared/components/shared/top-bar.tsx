@@ -1,5 +1,5 @@
 import React from 'react';
-import {cn} from "@/shared/lib/utils";
+import {cn} from "@/shared/helpers/lib/utils";
 import {Categories} from "@/shared/components/shared";
 import {SortPopup} from "@/shared/components/shared";
 import {Container} from "@/shared/components/shared";

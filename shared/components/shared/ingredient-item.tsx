@@ -1,5 +1,5 @@
 import React from 'react';
-import {cn} from "@/shared/lib/utils";
+import {cn} from "@/shared/helpers/lib/utils";
 import {CircleCheck} from "@/node_modules/.pnpm/lucide-react@0.427.0_react@18.3.1/node_modules/lucide-react";
 
 interface Props {

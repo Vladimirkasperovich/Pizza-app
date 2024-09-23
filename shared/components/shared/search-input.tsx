@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Search} from "lucide-react";
-import {cn} from "@/shared/lib/utils";
+import {cn} from "@/shared/helpers/lib/utils";
 import {useClickAway, useDebounce} from "react-use";
 import Link from "next/link";
 import {Api} from "@/shared/services/api-client";

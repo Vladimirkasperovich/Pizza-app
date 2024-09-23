@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {cn} from "@/shared/lib/utils";
+import {cn} from "@/shared/helpers/lib/utils";
 
 interface Props {
     className?: string;

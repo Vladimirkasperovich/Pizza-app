@@ -1,5 +1,5 @@
 import React from 'react';
-import {cn} from "@/shared/lib/utils";
+import {cn} from "@/shared/helpers/lib/utils";
 import {Title} from "@/shared/components/shared/title";
 import {Button} from "@/shared/components/ui";
 

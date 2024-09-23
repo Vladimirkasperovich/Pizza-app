@@ -1,8 +1,8 @@
 'use client'
 import React from 'react';
-import {cn} from "@/shared/lib/utils";
+import {cn} from "@/shared/helpers/lib/utils";
 
-type Variant = {
+export type Variant = {
     name: string;
     value: string;
     disabled?: boolean

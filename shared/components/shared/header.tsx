@@ -1,5 +1,5 @@
 import React from 'react';
-import {cn} from "@/shared/lib/utils";
+import {cn} from "@/shared/helpers/lib/utils";
 import Image from "next/image";
 import {Button} from "../ui/index";
 import {Container} from "../shared/index";
