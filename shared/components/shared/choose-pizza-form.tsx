@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import {cn} from "@/shared/helpers/lib/utils";
 import {PizzaImage} from "@/shared/components/shared/pizza-image";
@@ -30,7 +32,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
                                                      name,
                                                      items,
                                                      imageUrl,
-                                                 }) => {
+                                                 }) => { 
 
     const {
         size,
@@ -42,10 +44,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
         addIngredient,
     } = usePizzaOptions(items)
 
-    const {
-        totalPrice,
-        textDetails
-    } = getPizzaDetails(
+    const {totalPrice, textDetails} = getPizzaDetails(
         type,
         size,
         items,
