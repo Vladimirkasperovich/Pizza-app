@@ -42,6 +42,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
         type,
         selectedIngredients,
         addIngredient,
+
     } = usePizzaOptions(items)
 
     const {totalPrice, textDetails} = getPizzaDetails(

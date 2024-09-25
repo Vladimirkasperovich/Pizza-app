@@ -16,8 +16,12 @@ export const ChooseProductModal: React.FC<Props> = ({className, product}) => {
     const router = useRouter()
     const isPizzaForm = Boolean(product.items[0].pizzaType)
 
+    const onCloseModal = () => {
+        router.back()
+    }
+
     return (
-        <Dialog open={Boolean(product)} onOpenChange={() => router.back()}>
+        <Dialog open={Boolean(product)} onOpenChange={onCloseModal}>
             <DialogContent className={cn(
                 'p-0 max-w-[1060px] min-h-[500px] bg-white overflow-hidden', className
             )}>
@@ -27,12 +31,14 @@ export const ChooseProductModal: React.FC<Props> = ({className, product}) => {
                             imageUrl={product.imageUrl}
                             name={product.name}
                             ingredients={product.ingredients}
+                            onClickAddCart={onCloseModal}
                             items={product.items}
                         />
                     ) : (
                         <ChooseProductForm
                             imageUrl={product.imageUrl}
                             name={product.name}
+                            onClickAdd={onCloseModal}
                         />
                     )
 
