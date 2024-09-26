@@ -23,16 +23,23 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                                                                          className,
                                                                          children
                                                                      }) => {
-    const [totalAmount, fetchCartItems, items] = useCartStore(state => [
+
+    const [totalAmount, fetchCartItems, updateItemQuantity, items] = useCartStore(state => [
         state.totalAmount,
         state.fetchCartItems,
+        state.updateItemQuantity,
         state.items,
     ])
 
     React.useEffect(() => {
         fetchCartItems()
     }, [])
-    console.log(items)
+
+    const onClickCountButton = (id:number, quantity: number, type: 'plus' | 'minus') => {
+        const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
+        updateItemQuantity(id, newQuantity);
+    }
+
     return (
         <div className={className}>
             <Sheet>
@@ -40,7 +47,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                 <SheetContent className='flex flex-col justify-between pb-0 bg-[#F4F1EE]'>
                     <SheetHeader>
                         <SheetTitle>
-                            В корзине <span className='font-bold'>{3} товара</span>
+                            В корзине <span className='font-bold'>{items.length} товара</span>
                         </SheetTitle>
                     </SheetHeader>
 
@@ -63,6 +70,8 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                                                     name={item.name}
                                                     price={item.price}
                                                     quantity={item.quantity}
+                                                    onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
+
                                     />
                                 ))
                             }
