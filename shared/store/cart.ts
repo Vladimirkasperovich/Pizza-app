@@ -33,9 +33,7 @@ export const useCartStore = create<CartState>((set, get) => ({
         try {
             set({ loading: true, error: false });
             const data = await Api.cart.fetchCart();
-            console.log('Data from API:', data);  // Лог данных из API
             const details = getCartDetails(data);
-            console.log('Mapped cart details:', details);  // Лог преобразованных данных
             set(details);
         }catch (error){
             console.log(error);

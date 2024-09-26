@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
         if (!token) {
             return NextResponse.json({totalAmount: 0, items: []})
         }
-        const userCart = await prisma.cart.findMany({
+        const userCart = await prisma.cart.findFirst({
             where: {
                 OR: [
                     {

@@ -1,3 +1,4 @@
+import {CartDTO} from "@/shared/services/dto/cart.dto";
 import {calcCartItemTotalPrice} from "@/shared/helpers/lib/calc-cart-item-total-price";
 
 
@@ -17,11 +18,8 @@ interface ReturnProps {
     totalAmount: number;
 }
 
-export const getCartDetails = (data: any): ReturnProps => {
-    // console.log('Data passed to getCartDetails:', data);
-    debugger; // Точка останова для дебага
-
-    const items = data[0].items.map((item: any) => ({
+export const getCartDetails = (data: CartDTO): ReturnProps => {
+    const items = data.items.map((item) => ({
         id: item.id,
         quantity: item.quantity,
         name: item.productItem.product.name,
@@ -29,12 +27,11 @@ export const getCartDetails = (data: any): ReturnProps => {
         price: calcCartItemTotalPrice(item),
         pizzaSize: item.productItem.size,
         pizzaType: item.productItem.pizzaType,
-        ingredients: item.ingredients.map((ingredient:any) => ({
+        ingredients: item.ingredients.map((ingredient) => ({
             name: ingredient.name,
             price: ingredient.price,
         }))
     }));
-
     return {
         items,
         totalAmount: data.totalAmount,
