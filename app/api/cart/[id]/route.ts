@@ -1,6 +1,7 @@
 import {NextRequest, NextResponse} from "next/server";
 import {prisma} from "@/prisma/prisma-client";
-import {updateCartTotalAmount} from "@/shared/helpers/lib/update-cart-total-amount";
+import {updateCartTotalAmount} from "@/shared/helpers/lib";
+
 
 export async function PATCH(req: NextRequest, {params}: { params: { id: string } }) {
     try {
@@ -49,7 +50,7 @@ export async function DELETE(req: NextRequest, {params}: { params: { id: string 
            return NextResponse.json({error: 'Cart token not found'});
        }
 
-       const cartItem =  await prisma.cartItem.delete({
+       const cartItem =  await prisma.cartItem.findFirst({
            where: {
                id,
            },
