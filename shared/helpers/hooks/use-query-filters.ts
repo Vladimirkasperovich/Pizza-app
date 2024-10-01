@@ -1,7 +1,7 @@
-import React from "react";
 import qs from "qs";
 import {useRouter} from "next/navigation";
 import {Filters} from "@/shared/helpers/hooks/use-filters";
+import React from "react";
 
 export const useQueryFilters = (filters: Filters) => {
     const router = useRouter()
@@ -17,5 +17,5 @@ export const useQueryFilters = (filters: Filters) => {
         })
         router.push(`?${query}`, {scroll: false});
 
-    }, [filters, router])
+    }, [filters])
 }
