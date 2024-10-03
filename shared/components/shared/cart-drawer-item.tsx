@@ -16,13 +16,19 @@ export const CartDrawerItem: React.FC<Props> = ({
                                                     name,
                                                     imageUrl,
                                                     details,
+                                                    disabled,
                                                     quantity,
                                                     price,
                                                     onClickCountButton,
                                                     onClickRemove,
                                                 }) => {
     return (
-        <div className={cn('flex bg-white p-5 gap-6', className)}>
+        <div className={cn('flex bg-white p-5 gap-6',
+            {
+                'opacity-50 pointer-events-none': disabled
+            },
+            className
+        )}>
             <CartItem.Image src={imageUrl}/>
 
             <div className='flex-1'>
@@ -32,7 +38,8 @@ export const CartDrawerItem: React.FC<Props> = ({
                     <CountButton onClick={onClickCountButton} value={quantity}/>
                     <div className='flex items-center gap-3'>
                         <CartItem.Price value={price}/>
-                        <Trash2Icon className='text-gray-400 cursor-pointer hover:text-gray-600' size={16} onClick={onClickRemove}/>
+                        <Trash2Icon className='text-gray-400 cursor-pointer hover:text-gray-600' size={16}
+                                    onClick={onClickRemove}/>
                     </div>
                 </div>
             </div>
