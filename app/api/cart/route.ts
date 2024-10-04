@@ -59,11 +59,13 @@ export async function POST(req: NextRequest) {
             where: {
                 cartId: userCart.id,
                 productItemId: data.productItemId,
-                ingredients: {some: {id: {in: data.ingredients}}}
+                ingredients: {
+                    every: {
+                        id: {in: data.ingredients}
+                    },
+                    some: {},
+                }
             },
-            include: {
-                ingredients: true,
-            }
         });
 
         //Если товар был найден, делаем + 1
@@ -76,7 +78,7 @@ export async function POST(req: NextRequest) {
                     quantity: findCartItem.quantity + 1,
                 }
             });
-        }else {
+        } else {
             await prisma.cartItem.create({
                 data: {
                     cartId: userCart.id,
@@ -86,7 +88,6 @@ export async function POST(req: NextRequest) {
                 },
             });
         }
-
 
 
         const updatedUserCart = await updateCartTotalAmount(token);
