@@ -4,7 +4,6 @@ import React from 'react';
 import {X} from 'lucide-react';
 import {CartItemProps} from './cart-item-details/cart-item-details.types';
 import * as CartItemDetails from './cart-item-details';
-import {CountButtonProps} from './count-button';
 import {cn} from "@/shared/helpers/lib/utils";
 
 interface Props extends CartItemProps {
@@ -13,7 +12,7 @@ interface Props extends CartItemProps {
     className?: string;
 }
 
-export const CartItem: React.FC<Props> = ({
+export const CheckoutItem: React.FC<Props> = ({
                                               name,
                                               price,
                                               imageUrl,

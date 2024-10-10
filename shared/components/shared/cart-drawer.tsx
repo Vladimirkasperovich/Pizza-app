@@ -12,25 +12,23 @@ import {ArrowLeft, ArrowRight} from "@/node_modules/.pnpm/lucide-react@0.427.0_r
 import Link from 'next/link';
 import {CartDrawerItem} from "@/shared/components/shared/cart-drawer-item";
 import {getCartItemDetails} from "@/shared/helpers/lib";
-import {useCartStore} from "@/shared/store";
 import {PizzaSize, PizzaType} from "@/shared/helpers/constants/pizza";
 import Image from "next/image";
 import {Title} from "@/shared/components/shared/title";
 import {cn} from "@/shared/helpers/lib/utils";
 import {useCart} from "@/shared/helpers/hooks";
 
-interface Props {
-    className?: string;
-}
 
-export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
-                                                                         className,
-                                                                         children
-                                                                     }) => {
-    const {items, removeCartItem, onClickCountButton, totalAmount} = useCart()
+export const CartDrawer: React.FC<React.PropsWithChildren> = ({
+
+                                                                  children
+                                                              }) => {
+
+    const {items, removeCartItem, totalAmount, loading, handleCountQuantity} = useCart()
+
 
     return (
-        <div className={className}>
+        <div>
             <Sheet>
                 <SheetTrigger asChild>{children}</SheetTrigger>
                 <SheetContent className='flex flex-col justify-between pb-0 bg-[#F4F1EE]'>
@@ -72,19 +70,17 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                                                 id={item.id}
                                                 imageUrl={item.imageUrl}
                                                 details={
-                                                    item.pizzaSize && item.pizzaType
-                                                        ? getCartItemDetails(
-                                                            item.ingredients,
-                                                            item.pizzaType as PizzaType,
-                                                            item.pizzaSize as PizzaSize
-                                                        )
-                                                        : ''
+                                                    getCartItemDetails(
+                                                        item.ingredients,
+                                                        item.pizzaType as PizzaType,
+                                                        item.pizzaSize as PizzaSize
+                                                    )
                                                 }
                                                 disabled={item.disabled}
                                                 name={item.name}
                                                 price={item.price}
                                                 quantity={item.quantity}
-                                                onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
+                                                onClickCountButton={(type) => handleCountQuantity(item.id, item.quantity, type)}
                                                 onClickRemove={() => removeCartItem(item.id)}
 
                                             />
@@ -105,7 +101,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                                 </span>
                                         <span className='font-bold text-lg'>{totalAmount} BYN</span>
                                     </div>
-                                    <Link href={`/cart`}>
+                                    <Link href={`/checkout`}>
                                         <Button type='submit' className='w-full h-12 text-base'>
                                             Оформить заказ
                                             <ArrowRight className='w-5 ml-2'/>
