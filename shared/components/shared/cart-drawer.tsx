@@ -17,6 +17,7 @@ import {PizzaSize, PizzaType} from "@/shared/helpers/constants/pizza";
 import Image from "next/image";
 import {Title} from "@/shared/components/shared/title";
 import {cn} from "@/shared/helpers/lib/utils";
+import {useCart} from "@/shared/helpers/hooks";
 
 interface Props {
     className?: string;
@@ -26,23 +27,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                                                                          className,
                                                                          children
                                                                      }) => {
-
-    const [totalAmount, items, fetchCartItems, updateItemQuantity, removeCartItem,] = useCartStore(state => [
-        state.totalAmount,
-        state.items,
-        state.fetchCartItems,
-        state.updateItemQuantity,
-        state.removeCartItem,
-    ])
-
-    React.useEffect(() => {
-        fetchCartItems()
-    }, [])
-
-    const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
-        const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
-        updateItemQuantity(id, newQuantity);
-    }
+    const {items, removeCartItem, onClickCountButton, totalAmount} = useCart()
 
     return (
         <div className={className}>

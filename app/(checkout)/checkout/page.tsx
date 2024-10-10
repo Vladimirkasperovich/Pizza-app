@@ -2,29 +2,52 @@
 import {CheckoutItemDetails, Container, Title, WhiteBlock} from "@/shared/components/shared";
 import {useCartStore} from "@/shared/store";
 import React from "react";
-import {Input, Textarea} from "@/shared/components/ui";
-import {Package} from "@/node_modules/.pnpm/lucide-react@0.427.0_react@18.3.1/node_modules/lucide-react";
+import {Button, Input, Textarea} from "@/shared/components/ui";
+import {
+    ArrowRight,
+    Package,
+    Truck
+} from "@/node_modules/.pnpm/lucide-react@0.427.0_react@18.3.1/node_modules/lucide-react";
+import {CartItem} from "@/shared/components/shared/cart-item";
+import {getCartItemDetails} from "@/shared/helpers/lib";
+import {PizzaSize, PizzaType} from "@/shared/helpers/constants/pizza";
+import {useCart} from "@/shared/helpers/hooks";
+
+
 
 export default function CheckoutPage() {
-    const [totalAmount, items, fetchCartItems, updateItemQuantity, removeCartItem,] = useCartStore(state => [
-        state.totalAmount,
-        state.items,
-        state.fetchCartItems,
-        state.updateItemQuantity,
-        state.removeCartItem,
-    ])
-
-    React.useEffect(() => {
-        fetchCartItems()
-    }, [])
-
+    //Реализовал свой хук
+    const {items, removeCartItem, onClickCountButton, totalAmount} = useCart()
     return (
         <Container className='mt-10'>
             <Title text='Оформление заказа' size='lg' className='font-extrabold mb-8'/>
             <div className='flex gap-10'>
                 {/*Left side*/}
                 <div className='flex flex-col gap-10 flex-1 mb-20'>
-                    <WhiteBlock title='1. Корзина'>123123</WhiteBlock>
+                    <WhiteBlock title='1. Корзина'>
+                        {
+                            items.map(item => (
+                                <CartItem
+                                    key={item.id}
+                                    onClickRemove={() => removeCartItem(item.id)}
+                                    onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
+                                    id={item.id}
+                                    imageUrl={item.imageUrl}
+                                    details={
+                                    item.pizzaSize && item.pizzaType
+                                        ? getCartItemDetails(
+                                            item.ingredients,
+                                            item.pizzaType as PizzaType,
+                                            item.pizzaSize as PizzaSize
+                                        )
+                                        : ''}
+                                    name={item.name}
+                                    price={item.price}
+                                    quantity={item.quantity}
+                                />
+                            ))
+                        }
+                    </WhiteBlock>
                     <WhiteBlock title='2. Персональная информация'>
                         <div className='grid grid-cols-2 gap-5'>
                             <Input
@@ -78,9 +101,20 @@ export default function CheckoutPage() {
                             value={totalAmount}
                         />
                         <CheckoutItemDetails
+                            title={
+                                <div className='flex items-center'>
+                                    <Truck size={18} className='mr-2 text-gray-300'/>
+                                    Доставка:
+                                </div>
+                            }
                             value={totalAmount}
-                            // title={<Package />}
                         />
+                        <Button
+                            type='submit'
+                            className='w-full h-14 rounded-2xl mt-6 text-base font-bold'>
+                            Перейти к оплате
+                            <ArrowRight className='w-5 ml-2'/>
+                        </Button>
                     </WhiteBlock>
                 </div>
             </div>
