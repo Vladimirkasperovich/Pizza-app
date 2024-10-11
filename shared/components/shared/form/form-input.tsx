@@ -1,6 +1,6 @@
 import React from 'react';
 import {Input} from "@/shared/components/ui";
-import {ErrorText, RequiredSymbol} from "@/shared/components/shared";
+import {ClearButton, ErrorText, RequiredSymbol} from "@/shared/components/shared";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
     name: string;
@@ -29,6 +29,7 @@ export const FormInput: React.FC<Props> = ({
             }
             <div className='relative'>
                 <Input className='h-12 text-md' {...props} placeholder={placeholder}/>
+                <ClearButton />
             </div>
             <ErrorText text='Поле обязательное для заполнения' className='mt-2'/>
         </div>

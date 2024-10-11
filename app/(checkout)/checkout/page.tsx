@@ -1,104 +1,49 @@
 'use client'
-import {CheckoutItemSkeleton, Container, Title, WhiteBlock} from "@/shared/components/shared";
+import {CheckoutCart, CheckoutPersonalForm, Container, Title, WhiteBlock} from "@/shared/components/shared";
 import React from "react";
 import {Input, Textarea} from "@/shared/components/ui";
-import {CheckoutItem} from "@/shared/components/shared";
-import {getCartItemDetails} from "@/shared/helpers/lib";
-import {PizzaSize, PizzaType} from "@/shared/helpers/constants/pizza";
 import {useCart} from "@/shared/helpers/hooks";
 import {CheckoutSideBar} from "@/shared/components/shared";
-import {FormInput} from "@/shared/components/shared/form-components";
+import {FormInput} from "@/shared/components/shared";
+import {useForm, SubmitHandler} from "react-hook-form"
+import {zodResolver} from "@/node_modules/@hookform/resolvers/zod";
 
 
 export default function CheckoutPage() {
-    const {
-        items,
-        removeCartItem,
-        totalAmount,
-        handleCountQuantity,
-    } = useCart()
+    const {items, removeCartItem, totalAmount, handleCountQuantity, loading} = useCart()
+
+    // const {} = useForm({
+    //     resolver: zodResolver(),
+    //     defaultValues: {
+    //         firstName: '',
+    //         lastName: '',
+    //         email: '',
+    //         phone: '',
+    //         address: '',
+    //         comment: ''
+    //     }
+    // })
 
     return (
-        <Container className='mt-10'>
-            <Title text='Оформление заказа' size='lg' className='font-extrabold mb-8'/>
-            <div className='flex gap-10'>
-                {/*Left side*/}
-                <div className='flex flex-col gap-10 flex-1 mb-20'>
-                    <WhiteBlock title='1. Корзина'>
-                        <div className='flex flex-col gap-5'>
-                            {
-                                items.map(item => (
-                                    <React.Fragment key={item.id}>
-                                        {
-                                            <CheckoutItem
-                                                onClickRemove={() => removeCartItem(item.id)}
-                                                onClickCountButton={(type) => handleCountQuantity(item.id, item.quantity, type)}
-                                                id={item.id}
-                                                imageUrl={item.imageUrl}
-                                                details={
-                                                    getCartItemDetails(
-                                                        item.ingredients,
-                                                        item.pizzaType as PizzaType,
-                                                        item.pizzaSize as PizzaSize
-                                                    )
-                                                }
-                                                name={item.name}
-                                                price={item.price}
-                                                quantity={item.quantity}
-                                                disabled={item.disabled}
-                                            />
-                                        }
-                                        <div
-                                            className='flex-1 border-b border-dotted border-b-neutral-200 relative -top-1 mx-2'/>
-                                    </React.Fragment>
-                                ))
-                            }
-
-                        </div>
-                    </WhiteBlock>
-                    <WhiteBlock title='2. Персональная информация'>
-                        <div className='grid grid-cols-2 gap-5'>
-                            <Input
-                                name='FirstName'
-                                className='text-base'
-                                placeholder='Имя'/>
-                            <Input
-                                name='LastName'
-                                className='text-base'
-                                placeholder='Фамилия'/>
-                            <Input
-                                name='Email'
-                                className='text-base'
-                                placeholder='E-mail'/>
-                            {/*<Input*/}
-                            {/*    name='Phone'*/}
-                            {/*    className='text-base'*/}
-                            {/*    placeholder='Телефон'*/}
-                            {/*/>*/}
-                            <FormInput name='phone' placeholder='Телефон' className='text-base'/>
-                        </div>
-                    </WhiteBlock>
-                    <WhiteBlock title='3. Адрес доставки'>
-                        <div className='flex flex-col gap-5'>
-                            <Input
-                                name='Address'
-                                className='text-base'
-                                placeholder='Введите адрес...'
-                            />
-                            <Textarea
-                                placeholder='Комментарий к заказу'
-                                rows={5}
-                                className='text-base'
-                            />
-                        </div>
-                    </WhiteBlock>
+        <form action="">
+            <Container className='mt-10'>
+                <Title text='Оформление заказа' size='lg' className='font-extrabold mb-8'/>
+                <div className='flex gap-10'>
+                    {/*Left side*/}
+                    <div className='flex flex-col gap-10 flex-1 mb-20'>
+                        <CheckoutCart
+                            items={items}
+                            removeCartItem={removeCartItem}
+                            handleCountQuantity={handleCountQuantity}
+                        />
+                        <CheckoutPersonalForm/>
+                    </div>
+                    {/*Right side*/}
+                    <div className='w-[450px]'>
+                        <CheckoutSideBar totalAmount={totalAmount}/>
+                    </div>
                 </div>
-                {/*Right side*/}
-                <div className='w-[450px]'>
-                    <CheckoutSideBar totalAmount={totalAmount}/>
-                </div>
-            </div>
-
-        </Container>
+            </Container>
+        </form>
     )
 }
