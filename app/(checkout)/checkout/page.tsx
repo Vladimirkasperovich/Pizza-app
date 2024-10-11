@@ -99,13 +99,13 @@ export default function CheckoutPage() {
                     <WhiteBlock className='p-6 sticky top-4'>
                         <div className="flex flex-col gap-1">
                             <span className="text-xl">Итого:</span>
-                            <span className="text-[34px] font-extrabold">35 BYN</span>
+                            <span className="text-[34px] font-extrabold">{totalAmount} BYN</span>
                         </div>
                         <CheckoutItemDetails
                             title={
                                 <div className='flex items-center'>
                                     <Package size={18} className='mr-2 text-gray-300'/>
-                                    Стоимость товаров:
+                                    Стоимость корзины:
                                 </div>
                             }
                             value={totalAmount}
@@ -117,7 +117,7 @@ export default function CheckoutPage() {
                                     Доставка:
                                 </div>
                             }
-                            value={totalAmount}
+                            value={0}
                         />
                         <Button
                             type='submit'

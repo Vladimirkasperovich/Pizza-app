@@ -24,7 +24,8 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({
                                                                   children
                                                               }) => {
 
-    const {items, removeCartItem, totalAmount, loading, handleCountQuantity} = useCart()
+    const {items, removeCartItem, totalAmount, handleCountQuantity} = useCart()
+    const [redirecting, setRedirecting] = React.useState(false);
 
 
     return (
@@ -60,7 +61,8 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({
                                 </div>
                             )
                         }
-                        {totalAmount > 0 && (<>
+                        {totalAmount > 0 && (
+                            <>
                             <div className='-mx-6 mt-5 overflow-auto flex-1'>
 
                                 {
@@ -102,7 +104,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({
                                         <span className='font-bold text-lg'>{totalAmount} BYN</span>
                                     </div>
                                     <Link href={`/checkout`}>
-                                        <Button type='submit' className='w-full h-12 text-base'>
+                                        <Button type='submit' className='w-full h-12 text-base' loading={redirecting} onClick={() => setRedirecting(true)}>
                                             Оформить заказ
                                             <ArrowRight className='w-5 ml-2'/>
                                         </Button>

@@ -17,7 +17,7 @@ const generateProductItem = ({
 }) => {
     return {
         productId,
-        price: randomNumber(190, 600),
+        price: pizzaType && size ? randomNumber(30, 60) : randomNumber(5, 10),
         pizzaType,
         size,
     } as Prisma.ProductItemUncheckedCreateInput;
