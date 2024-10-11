@@ -7,6 +7,7 @@ import {getCartItemDetails} from "@/shared/helpers/lib";
 import {PizzaSize, PizzaType} from "@/shared/helpers/constants/pizza";
 import {useCart} from "@/shared/helpers/hooks";
 import {CheckoutSideBar} from "@/shared/components/shared";
+import {FormInput} from "@/shared/components/shared/form-components";
 
 
 export default function CheckoutPage() {
@@ -69,11 +70,12 @@ export default function CheckoutPage() {
                                 name='Email'
                                 className='text-base'
                                 placeholder='E-mail'/>
-                            <Input
-                                name='Phone'
-                                className='text-base'
-                                placeholder='Телефон'
-                            />
+                            {/*<Input*/}
+                            {/*    name='Phone'*/}
+                            {/*    className='text-base'*/}
+                            {/*    placeholder='Телефон'*/}
+                            {/*/>*/}
+                            <FormInput name='phone' placeholder='Телефон' className='text-base'/>
                         </div>
                     </WhiteBlock>
                     <WhiteBlock title='3. Адрес доставки'>

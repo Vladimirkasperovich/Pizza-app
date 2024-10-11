@@ -1,8 +1,8 @@
 import React from 'react';
 import {Input} from "@/shared/components/ui";
-import {RequiredSymbol} from "@/shared/components/shared";
+import {ErrorText, RequiredSymbol} from "@/shared/components/shared";
 
-interface Props {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
     name: string;
     label?: string;
     required?: boolean;
@@ -14,6 +14,7 @@ export const FormInput: React.FC<Props> = ({
                                                label,
                                                required,
                                                className,
+                                               placeholder,
                                                ...props
                                            }) => {
 
@@ -27,8 +28,9 @@ export const FormInput: React.FC<Props> = ({
                 )
             }
             <div className='relative'>
-                <Input className='h-12 text-md' {...props}/>
+                <Input className='h-12 text-md' {...props} placeholder={placeholder}/>
             </div>
+            <ErrorText text='Поле обязательное для заполнения' className='mt-2'/>
         </div>
     );
 };
