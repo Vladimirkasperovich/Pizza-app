@@ -1,7 +1,6 @@
 'use client'
 import {CheckoutCart, CheckoutPersonalForm, Container, Title, WhiteBlock} from "@/shared/components/shared";
 import React from "react";
-import {Input, Textarea} from "@/shared/components/ui";
 import {useCart} from "@/shared/helpers/hooks";
 import {CheckoutSideBar} from "@/shared/components/shared";
 import {FormInput} from "@/shared/components/shared";
