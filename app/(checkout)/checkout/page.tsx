@@ -1,15 +1,15 @@
 'use client'
-import {CheckoutCart, CheckoutPersonalForm, Container, Title, WhiteBlock} from "@/shared/components/shared";
 import React from "react";
+import {CheckoutCart, CheckoutPersonalForm, Container, Title} from "@/shared/components";
 import {useCart} from "@/shared/helpers/hooks";
-import {CheckoutSideBar} from "@/shared/components/shared";
+import {CheckoutSideBar} from "@/shared/components";
 import {FormProvider, useForm} from "react-hook-form"
 import {zodResolver} from "@/node_modules/@hookform/resolvers/zod";
-import {CheckoutFormSchema, checkoutFormSchema} from "@/shared/components/shared/checkout/checkout-form-schema";
+import {CheckoutFormSchema, checkoutFormSchema} from "@/shared/helpers/constants";
 
 
 export default function CheckoutPage() {
-    const {items, removeCartItem, totalAmount, handleCountQuantity, loading} = useCart()
+    const {items, removeCartItem, totalAmount, handleCountQuantity} = useCart()
 
     const form = useForm<CheckoutFormSchema>({
         resolver: zodResolver(checkoutFormSchema),

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Textarea} from "@/shared/components/ui";
-import {FormInput, WhiteBlock} from "@/shared/components/shared";
+import {FormInput, FormTextarea, WhiteBlock} from "@/shared/components/shared";
 
 interface Props {
     className?: string;
@@ -20,12 +19,7 @@ export const CheckoutPersonalForm: React.FC<Props> = ({className}) => {
             <WhiteBlock title='3. Адрес доставки'>
                 <div className='flex flex-col gap-5'>
                     <FormInput name='address' placeholder='Введите адрес...' className='text-base'/>
-                    <Textarea
-                        placeholder='Комментарий к заказу'
-                        rows={5}
-                        className='text-base'
-                        name='comment'
-                    />
+                    <FormTextarea name='comment' placeholder='Комментарий к заказу' className='text-base' rows={5}/>
                 </div>
             </WhiteBlock>
         </>
