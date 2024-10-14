@@ -1,6 +1,5 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { X } from 'lucide-react';
 import {ClearButton, Textarea} from "@/shared/components";
 
 
@@ -19,14 +18,14 @@ export const FormTextarea: React.FC<Props> = ({ className, name, label, required
     setValue,
   } = useFormContext();
 
-  const errorText = errors?.[name]?.message as string;
+  const errorText = errors[name]?.message as string;
 
   const text = watch(name);
 
   const onClickClear = () => {
     setValue(name, '');
   };
-
+  console.log(errorText)
   return (
     <div className={className}>
       <p className="font-medium mb-2">
