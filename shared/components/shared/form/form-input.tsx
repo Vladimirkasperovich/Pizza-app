@@ -1,6 +1,9 @@
+'use client'
+
 import React from 'react';
 import {Input} from "@/shared/components/ui";
 import {ClearButton, ErrorText, RequiredSymbol} from "@/shared/components/shared";
+import {useFormContext} from "@/node_modules/.pnpm/react-hook-form@7.53.0_react@18.3.1/node_modules/react-hook-form";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
     name: string;
@@ -17,6 +20,20 @@ export const FormInput: React.FC<Props> = ({
                                                placeholder,
                                                ...props
                                            }) => {
+    const {
+        register,
+        formState: {errors},
+        watch,
+        setValue
+    } = useFormContext()
+
+    const value = watch(name)
+    const errorText = errors[name]?.message as string
+    const onClickClear = () => {
+        setValue(name, '', {
+            shouldValidate: true
+        })
+    }
 
     return (
         <div className={className}>
@@ -28,10 +45,17 @@ export const FormInput: React.FC<Props> = ({
                 )
             }
             <div className='relative'>
-                <Input className='h-12 text-md' {...props} placeholder={placeholder}/>
-                <ClearButton />
+                <Input
+                    className='h-12 text-md'
+                    {...props}
+                    placeholder={placeholder}
+                    {...register(name)}
+                />
+                {value && <ClearButton onClick={onClickClear}/>}
             </div>
-            <ErrorText text='Поле обязательное для заполнения' className='mt-2'/>
+            {
+                errorText && <ErrorText text={errorText} className='mt-2'/>
+            }
         </div>
     );
 };
