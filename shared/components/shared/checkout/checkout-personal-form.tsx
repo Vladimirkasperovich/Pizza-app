@@ -9,7 +9,7 @@ export const CheckoutPersonalForm: React.FC<Props> = ({className}) => {
 
     return (
         <>
-            <WhiteBlock title='2. Персональная информация'>
+            <WhiteBlock title='2. Персональная информация' className={className}>
                 <div className='grid grid-cols-2 gap-5'>
                     <FormInput name='firstName' placeholder='Имя' className='text-base'/>
                     <FormInput name='lastName' placeholder='Фамилия' className='text-base'/>
@@ -17,7 +17,7 @@ export const CheckoutPersonalForm: React.FC<Props> = ({className}) => {
                     <FormInput name='phone' placeholder='Телефон' className='text-base'/>
                 </div>
             </WhiteBlock>
-            <WhiteBlock title='3. Адрес доставки'>
+            <WhiteBlock title='3. Адрес доставки' className={className}>
                 <div className='flex flex-col gap-5'>
                     <AddressInput name='address'/>
                     <FormTextarea name='comment' placeholder='Комментарий к заказу' className='text-base' rows={5}/>
