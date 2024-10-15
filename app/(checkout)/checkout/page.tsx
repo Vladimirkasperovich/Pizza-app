@@ -9,7 +9,7 @@ import {CheckoutFormSchema, checkoutFormSchema} from "@/shared/helpers/constants
 
 
 export default function CheckoutPage() {
-    const {items, removeCartItem, totalAmount, handleCountQuantity} = useCart()
+    const {items, removeCartItem, totalAmount, handleCountQuantity, loading} = useCart()
 
     const form = useForm<CheckoutFormSchema>({
         resolver: zodResolver(checkoutFormSchema),
@@ -43,7 +43,7 @@ export default function CheckoutPage() {
                             </div>
                             {/*Right side*/}
                             <div className='w-[450px]'>
-                                <CheckoutSideBar totalAmount={totalAmount}/>
+                                <CheckoutSideBar totalAmount={totalAmount} loading={loading}/>
                             </div>
                         </div>
                     </form>

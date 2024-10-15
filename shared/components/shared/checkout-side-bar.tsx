@@ -6,22 +6,30 @@ import {
     Package,
     Truck
 } from "@/node_modules/.pnpm/lucide-react@0.427.0_react@18.3.1/node_modules/lucide-react";
-import {Button} from "@/shared/components/ui";
+import {Button, Skeleton} from "@/shared/components/ui";
 
 interface Props {
     className?: string;
     totalAmount: number;
+    loading?: boolean;
 }
 
 export const CheckoutSideBar: React.FC<Props> = ({
                                                      className,
                                                      totalAmount,
+                                                     loading
                                                  }) => {
     return (
         <WhiteBlock className='p-6 sticky top-4'>
             <div className="flex flex-col gap-1">
                 <span className="text-xl">Итого:</span>
-                <span className="text-[34px] font-extrabold">{totalAmount} BYN</span>
+                {
+                    loading ? (
+                        <Skeleton className='w-full h-11'/>
+                    ) : (
+                        <span className="text-[34px] font-extrabold">{totalAmount} BYN</span>
+                    )
+                }
             </div>
             <CheckoutItemDetails
                 title={

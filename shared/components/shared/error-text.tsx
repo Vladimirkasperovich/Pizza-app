@@ -2,7 +2,7 @@ import { cn } from '@/shared/helpers/lib/utils';
 import React from 'react';
 
 interface Props {
-  text: string;
+  text?: string;
   className?: string;
 }
 

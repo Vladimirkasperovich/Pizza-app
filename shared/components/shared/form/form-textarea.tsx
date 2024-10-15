@@ -25,7 +25,7 @@ export const FormTextarea: React.FC<Props> = ({ className, name, label, required
   const onClickClear = () => {
     setValue(name, '');
   };
-  console.log(errorText)
+
   return (
     <div className={className}>
       <p className="font-medium mb-2">

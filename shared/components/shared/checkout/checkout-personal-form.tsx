@@ -1,11 +1,12 @@
 import React from 'react';
-import {FormInput, FormTextarea, WhiteBlock} from "@/shared/components/shared";
+import {AddressInput, FormInput, FormTextarea, WhiteBlock} from "@/shared/components/shared";
 
 interface Props {
     className?: string;
 }
 
 export const CheckoutPersonalForm: React.FC<Props> = ({className}) => {
+
     return (
         <>
             <WhiteBlock title='2. Персональная информация'>
@@ -18,7 +19,7 @@ export const CheckoutPersonalForm: React.FC<Props> = ({className}) => {
             </WhiteBlock>
             <WhiteBlock title='3. Адрес доставки'>
                 <div className='flex flex-col gap-5'>
-                    <FormInput name='address' placeholder='Введите адрес...' className='text-base'/>
+                    <AddressInput name='address'/>
                     <FormTextarea name='comment' placeholder='Комментарий к заказу' className='text-base' rows={5}/>
                 </div>
             </WhiteBlock>
