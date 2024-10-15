@@ -25,7 +25,7 @@ export const CheckoutSideBar: React.FC<Props> = ({
                 <span className="text-xl">Итого:</span>
                 {
                     loading ? (
-                        <Skeleton className='w-full h-11'/>
+                        <Skeleton className='h-11 w-48'/>
                     ) : (
                         <span className="text-[34px] font-extrabold">{totalAmount} BYN</span>
                     )
@@ -39,6 +39,7 @@ export const CheckoutSideBar: React.FC<Props> = ({
                     </div>
                 }
                 value={totalAmount}
+                loading={loading}
             />
             <CheckoutItemDetails
                 title={
@@ -47,6 +48,7 @@ export const CheckoutSideBar: React.FC<Props> = ({
                         Доставка:
                     </div>
                 }
+                loading={loading}
                 value={0}
             />
             <Button
