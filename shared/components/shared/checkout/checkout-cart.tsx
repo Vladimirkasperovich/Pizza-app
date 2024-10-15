@@ -24,32 +24,36 @@ export const CheckoutCart: React.FC<Props> = ({
         <WhiteBlock title='1. Корзина' className={className}>
             <div className='flex flex-col gap-5'>
                 {
-                    loading && [...Array(4)].map((_, index) => <CheckoutItemSkeleton key={index}/>)
-                }
-                {
-                    items.map(item => (
-                        <React.Fragment key={item.id}>
-                            <CheckoutItem
-                                onClickRemove={() => removeCartItem(item.id)}
-                                onClickCountButton={(type) => handleCountQuantity(item.id, item.quantity, type)}
-                                id={item.id}
-                                imageUrl={item.imageUrl}
-                                details={
-                                    getCartItemDetails(
-                                        item.ingredients,
-                                        item.pizzaType as PizzaType,
-                                        item.pizzaSize as PizzaSize
-                                    )
-                                }
-                                name={item.name}
-                                price={item.price}
-                                quantity={item.quantity}
-                                disabled={item.disabled}
-                            />
-                            <div
-                                className='flex-1 border-b border-dotted border-b-neutral-200 relative -top-1 mx-2'/>
-                        </React.Fragment>
-                    ))
+                    loading && items.length > 0
+                        ? (
+                            [...Array(4)].map((_, index) => <CheckoutItemSkeleton key={index}/>)
+                        )
+                        :
+                        (
+                            items.map(item => (
+                                <React.Fragment key={item.id}>
+                                    <CheckoutItem
+                                        onClickRemove={() => removeCartItem(item.id)}
+                                        onClickCountButton={(type) => handleCountQuantity(item.id, item.quantity, type)}
+                                        id={item.id}
+                                        imageUrl={item.imageUrl}
+                                        details={
+                                            getCartItemDetails(
+                                                item.ingredients,
+                                                item.pizzaType as PizzaType,
+                                                item.pizzaSize as PizzaSize
+                                            )
+                                        }
+                                        name={item.name}
+                                        price={item.price}
+                                        quantity={item.quantity}
+                                        disabled={item.disabled}
+                                    />
+                                    <div
+                                        className='flex-1 border-b border-dotted border-b-neutral-200 relative -top-1 mx-2'/>
+                                </React.Fragment>
+                            ))
+                        )
                 }
 
             </div>
