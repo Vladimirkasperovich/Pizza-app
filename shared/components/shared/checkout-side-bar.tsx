@@ -17,7 +17,7 @@ interface Props {
 export const CheckoutSideBar: React.FC<Props> = ({
                                                      className,
                                                      totalAmount,
-                                                     loading
+                                                     loading,
                                                  }) => {
     return (
         <WhiteBlock className='p-6 sticky top-4'>
@@ -53,8 +53,10 @@ export const CheckoutSideBar: React.FC<Props> = ({
             />
             <Button
                 type='submit'
-                className='w-full h-14 rounded-2xl mt-6 text-base font-bold'>
-                Перейти к оплате
+                className='w-full h-14 rounded-2xl mt-6 text-base font-bold'
+                loading={loading}
+            >
+                Оформить заказ
                 <ArrowRight className='w-5 ml-2'/>
             </Button>
         </WhiteBlock>
