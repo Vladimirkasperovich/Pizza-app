@@ -77,8 +77,10 @@ export async function createOrder(data: CheckoutFormSchema) {
 
         //Сделать создание ссылки оплаты
 
-        
+
     } catch (error) {
 
     }
 }
+
+//re_96pPJYRS_HPggEjMQLjsPa4utvRDTk3sC
