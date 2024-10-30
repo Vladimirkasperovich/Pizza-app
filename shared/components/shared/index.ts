@@ -1,30 +1,31 @@
-export {Container} from './container'
-export {Header} from './header'
-export {Title} from './title'
-export {Categories} from './categories'
-export {SortPopup} from './sort-popup'
-export {TopBar} from './top-bar'
-export {Filters} from './filters'
-export {FilterCheckbox} from './filter-checkbox'
-export {RangeSlider} from './range-slider'
-export {CheckboxFiltersGroup} from './checkbox-filters-group'
-export {ProductCard} from './product-card'
-export {SearchInput} from './search-input'
-export {PizzaImage} from './pizza-image'
-export {ChooseProductForm} from './choose-product-form'
-export {IngredientItem} from './ingredient-item'
-export {CartButton} from './cart-button'
-export {CartDrawer} from './cart-drawer'
-export {ProductForm} from './product-form'
-export {WhiteBlock} from './white-block'
-export {CheckoutItemDetails} from './checkout-item-details'
-export {CheckoutItem} from './checkout-item'
-export {CheckoutItemSkeleton} from './checkout-item-skeleton'
-export {CheckoutSideBar} from './checkout-side-bar'
-export {RequiredSymbol} from './required-symbol'
-export {ErrorText} from './error-text'
-export {ClearButton} from './clear-button'
-export {AddressInput} from './address-input'
-export * from './form'
-export * from './checkout'
-export * from './modals'
+export { Container } from "./container";
+export { Header } from "./header";
+export { Title } from "./title";
+export { Categories } from "./categories";
+export { SortPopup } from "./sort-popup";
+export { TopBar } from "./top-bar";
+export { Filters } from "./filters";
+export { FilterCheckbox } from "./filter-checkbox";
+export { RangeSlider } from "./range-slider";
+export { CheckboxFiltersGroup } from "./checkbox-filters-group";
+export { ProductCard } from "./product-card";
+export { SearchInput } from "./search-input";
+export { PizzaImage } from "./pizza-image";
+export { ChooseProductForm } from "./choose-product-form";
+export { IngredientItem } from "./ingredient-item";
+export { CartButton } from "./cart-button";
+export { CartDrawer } from "./cart-drawer";
+export { ProductForm } from "./product-form";
+export { WhiteBlock } from "./white-block";
+export { CheckoutItemDetails } from "./checkout-item-details";
+export { CheckoutItem } from "./checkout-item";
+export { CheckoutItemSkeleton } from "./checkout-item-skeleton";
+export { CheckoutSideBar } from "./checkout-side-bar";
+export { RequiredSymbol } from "./required-symbol";
+export { ErrorText } from "./error-text";
+export { ClearButton } from "./clear-button";
+export { AddressInput } from "./address-input";
+export { PayOrderTemplate } from "./email-templates/pay-order";
+export * from "./form";
+export * from "./checkout";
+export * from "./modals";
