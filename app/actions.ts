@@ -86,7 +86,7 @@ export async function createOrder(data: CheckoutFormSchema) {
       }),
     );
 
-    return "https://www.radiorecord.ru/";
+    return "/";
   } catch (error) {
     console.log("[CreateOrder] Server error", error);
   }
