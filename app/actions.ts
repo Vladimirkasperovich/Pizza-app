@@ -71,7 +71,7 @@ export async function createOrder(data: CheckoutFormSchema) {
     /**/
     await prisma.cartItem.deleteMany({
       where: {
-        id: userCart.id,
+        cartId: userCart.id,
       },
     });
 
@@ -82,10 +82,12 @@ export async function createOrder(data: CheckoutFormSchema) {
       PayOrderTemplate({
         orderId: order.id,
         totalAmount: order.totalAmount,
-        paymentUrl: order.email,
+        paymentUrl: "https://resend.com/docs/send-with-nextjs",
       }),
     );
-  } catch (error) {}
-}
 
-//re_96pPJYRS_HPggEjMQLjsPa4utvRDTk3sC
+    return "https://www.radiorecord.ru/";
+  } catch (error) {
+    console.log("[CreateOrder] Server error", error);
+  }
+}
